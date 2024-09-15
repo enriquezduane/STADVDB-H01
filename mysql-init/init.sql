@@ -5,7 +5,7 @@ CREATE DATABASE IF NOT EXISTS datawarehouse;
 USE datawarehouse;
 
 CREATE TABLE dim_employees (
-    employee_id INT PRIMARY KEY,
+    employee_id INT AUTO_INCREMENT PRIMARY KEY,
     birth_date DATE,
     first_name VARCHAR(255),
     last_name VARCHAR(255),
@@ -14,16 +14,19 @@ CREATE TABLE dim_employees (
 );
 
 CREATE TABLE dim_sales (
-    sales_id INT PRIMARY KEY,
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    sales_code INT, 
     product_number INT,
     date DATE,
     quantity INT
 );
 
 CREATE TABLE fact_table (
-    id INT PRIMARY KEY,
+    id INT AUTO_INCREMENT PRIMARY KEY,
     employee_id INT,
     sales_id INT,
     FOREIGN KEY (employee_id) REFERENCES dim_employees(employee_id),
-    FOREIGN KEY (sales_id) REFERENCES dim_sales(sales_id)
+    FOREIGN KEY (id) REFERENCES dim_sales(id)
 );
+
+
