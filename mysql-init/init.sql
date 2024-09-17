@@ -39,8 +39,7 @@ CREATE TABLE fact_table (
     complaints_id INT,
     FOREIGN KEY (employee_id) REFERENCES dim_employees(employee_id),
     FOREIGN KEY (sales_id) REFERENCES dim_sales(id),
-    FOREIGN KEY (complaints_id) REFERENCES dim_complaints(id),
-    FOREIGN KEY (id) REFERENCES dim_sales(id)
+    FOREIGN KEY (complaints_id) REFERENCES dim_complaints(id)
 );
 
 
