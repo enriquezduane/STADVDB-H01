@@ -21,6 +21,16 @@ CREATE TABLE dim_sales (
     quantity INT
 );
 
+CREATE TABLE dim_complaints (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    product VARCHAR(255),
+    sub_product VARCHAR(255),
+    issue VARCHAR(255),
+    sub_issue VARCHAR(255),
+    company VARCHAR(255),
+    company_public_response VARCHAR(255)
+);
+
 CREATE TABLE fact_table (
     id INT AUTO_INCREMENT PRIMARY KEY,
     employee_id INT,
