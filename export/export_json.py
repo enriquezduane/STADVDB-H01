@@ -1,7 +1,5 @@
 from pymongo import MongoClient
 import pymysql
-import json
-import datetime
 
 client = MongoClient('mongodb://localhost:27017/')
 
