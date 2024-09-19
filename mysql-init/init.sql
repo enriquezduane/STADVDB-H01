@@ -32,6 +32,36 @@ CREATE TABLE dim_complaints (
     company_public_response VARCHAR(255)
 );
 
+CREATE TABLE dim_supplies_orders (
+    id VARCHAR(50) NOT NULL,
+    sale_date DATETIME,
+    store_location VARCHAR(100),
+    customer_gender CHAR(1),
+    customer_age INT,
+    customer_email VARCHAR(255),
+    customer_satisfaction INT,
+    coupon_used BOOLEAN,
+    purchase_method VARCHAR(50),
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE dim_supplies_order_items (
+    item_key INT AUTO_INCREMENT PRIMARY KEY,
+    order_id VARCHAR(50),
+    name VARCHAR(100),
+    price DECIMAL(10, 2),
+    quantity INT,
+    FOREIGN KEY (order_id) REFERENCES dim_supplies_orders(id)
+);
+
+CREATE TABLE dim_supplies_order_item_tags (
+    item_tag_key INT AUTO_INCREMENT PRIMARY KEY,
+    item_key INT,
+    tagname VARCHAR(50),
+    FOREIGN KEY(item_key) REFERENCES dim_supplies_order_items(item_key)
+);
+
+
 CREATE TABLE fact_table (
     id INT AUTO_INCREMENT PRIMARY KEY,
     employee_id INT,
