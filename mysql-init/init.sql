@@ -33,7 +33,8 @@ CREATE TABLE dim_complaints (
 );
 
 CREATE TABLE dim_supplies_orders (
-    id VARCHAR(50) NOT NULL,
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    order_id VARCHAR(50) NOT NULL UNIQUE,
     sale_date DATETIME,
     store_location VARCHAR(100),
     customer_gender CHAR(1),
@@ -41,8 +42,7 @@ CREATE TABLE dim_supplies_orders (
     customer_email VARCHAR(255),
     customer_satisfaction INT,
     coupon_used BOOLEAN,
-    purchase_method VARCHAR(50),
-    PRIMARY KEY (id)
+    purchase_method VARCHAR(50)
 );
 
 CREATE TABLE dim_supplies_order_items (
@@ -51,7 +51,7 @@ CREATE TABLE dim_supplies_order_items (
     name VARCHAR(100),
     price DECIMAL(10, 2),
     quantity INT,
-    FOREIGN KEY (order_id) REFERENCES dim_supplies_orders(id)
+    FOREIGN KEY (order_id) REFERENCES dim_supplies_orders(order_id)
 );
 
 CREATE TABLE dim_supplies_order_item_tags (
@@ -61,15 +61,18 @@ CREATE TABLE dim_supplies_order_item_tags (
     FOREIGN KEY(item_key) REFERENCES dim_supplies_order_items(item_key)
 );
 
-
 CREATE TABLE fact_table (
     id INT AUTO_INCREMENT PRIMARY KEY,
     employee_id INT,
     sales_id INT,
     complaints_id INT,
+    orders_id INT,
+    order_items_id INT,
+    tags_id INT,
     FOREIGN KEY (employee_id) REFERENCES dim_employees(employee_id),
     FOREIGN KEY (sales_id) REFERENCES dim_sales(id),
-    FOREIGN KEY (complaints_id) REFERENCES dim_complaints(id)
+    FOREIGN KEY (complaints_id) REFERENCES dim_complaints(id),
+    FOREIGN KEY (orders_id) REFERENCES dim_supplies_orders(id),
+    FOREIGN KEY (order_items_id) REFERENCES dim_supplies_order_items(item_key),
+    FOREIGN KEY (tags_id) REFERENCES dim_supplies_order_item_tags(item_tag_key)
 );
-
-

@@ -59,9 +59,9 @@ def test_connection(engine, name):
         print(f"Failed to connect to {name} database: {str(e)}")
 
 print("Testing database connections...")
+test_connection(employee_cloud_engine, "cloud employee")
 test_connection(employee_local_engine, "local employee")
 test_connection(sales_local_engine, "local sales")
-test_connection(employee_cloud_engine, "cloud employee")
 
 print("Testing cloud employee database connection...")
 try:

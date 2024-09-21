@@ -30,7 +30,7 @@ for order in data:
     purchase_method = order['purchaseMethod']
 
     cursor.execute("""
-    INSERT INTO dim_supplies_orders (id, sale_date, store_location, customer_gender, customer_age, customer_email, customer_satisfaction, coupon_used, purchase_method)
+    INSERT INTO dim_supplies_orders (order_id, sale_date, store_location, customer_gender, customer_age, customer_email, customer_satisfaction, coupon_used, purchase_method)
     VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
     """, (id, sale_date, store_location, customer_gender, customer_age, customer_email, customer_satisfaction, coupon_used, purchase_method))
 
@@ -54,7 +54,7 @@ for order in data:
                            """, (item_key, tag_name))
 
 
-print("Data load successful.")
+print("MongoDB Data Extracted Successfully")
 db.commit()
 cursor.close()
 db.close()
