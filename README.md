@@ -13,11 +13,7 @@ Python is the programming language used in the creation of the export scripts in
 
 # Data Warehouse setup for Windows
 1. Install Docker and DBeaver
-2. Once they are installed, run this code in the terminal. It should set the foundation for the local database:
-  ```Terminal
-	  docker-compose up -d --build
-  ```
-3. Using DBeaver, create two new database connections (Crtl + Shift + N) and fill them with these database credentials. Both should be connected before running any script:
+2. Using DBeaver, create two new database connections (Crtl + Shift + N) and fill them with these database credentials. Both should be connected before running any script:
    ```
     Local Database:
     hostname: localhost
@@ -31,20 +27,9 @@ Python is the programming language used in the creation of the export scripts in
     username: guest
     password: relational
    ```
-4. Install Python dependencies.
+3. Change directory to where the file is located in your computer then run the Powershell script 'windows-setup.ps1'.
    ```
-    pip3 install mysql-connector-python
-    pip3 install pandas
-    pip3 install sqlalchemy
-    pip3 install pymongo
-    pip3 install pymysql
-   ```
-5. Run all Python scripts.
-   ```
-   python export/export_sql.py
-   python export/export_csv.py
-   python export/export_json.py
-   python export/connect_to_fact.py
+    .\windows-setup.ps1
    ```
    
 # Data Warehouse setup for Unix-based systems
